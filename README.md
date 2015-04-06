@@ -30,10 +30,10 @@ path = "/Users/sean/Google Drive/website/images/"
 filter = ["\\.(jpg|jpeg|gif|png)$", "i"]
 
 ```
-```
-output:
+```javascript
+// output:
 
-./dinocms_content/blog.js
+// ./dinocms_content/blog.js
 
 module.exports = [
   {
@@ -45,7 +45,7 @@ module.exports = [
 ...
 ];
 
-./dinocms_content/images.js
+// ./dinocms_content/images.js
 
 module.exports = [
   {
