@@ -50,8 +50,8 @@ module.exports = [
 module.exports = [
   {
     "name" : "cat.png",
-    "src" :  require("/Users/sean/Google Drive/website/images/cat.jpg"),
-    "size": 4096
+    "src" :  require("/Users/sean/Google Drive/website/images/cat.png"),
+    "size": 40960
     "mtime": '2009-06-29T11:11:40Z'
   },
 ...
@@ -74,7 +74,7 @@ Dinocms allows you to `require` directory contents without explicitly knowing th
 
 
 #### why not just make this some kind of webpack loader/plugin?
-Webpack's not gonna solve all your programs. Seperation of concerns: use dinocms to link your content, and use webpack to bundle it up.
+Webpack's not gonna solve all your problems. Seperation of concerns: use dinocms to link your content, and use webpack to bundle it up.
 
 ### todo:
 - add debug mode
