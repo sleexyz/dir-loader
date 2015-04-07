@@ -80,3 +80,4 @@ Webpack's not gonna solve all your problems. Seperation of concerns: use dinocms
 - add debug mode
 - write testssss
 - add help message
+- add `dinocms clean`

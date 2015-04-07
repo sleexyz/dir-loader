@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 //parses dinocms.toml in current working directory
-//outputs appropriate json files in dinahcms_modules/
+//outputs appropriate js files in dinocms_content/
 
 var fs = require("fs");
 var path = require("path");
@@ -79,7 +79,7 @@ async.each(Object.keys(config), function (key, callback) {
             });
 
             // Write
-            var filepath = path.join(full_output_dir, key+".json");
+            var filepath = path.join(full_output_dir, key+".js");
 
             console.log(filepath);
             console.log("    ----> " + folderpath);
