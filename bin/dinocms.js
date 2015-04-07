@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 //parses dinocms.toml in current working directory
 //outputs appropriate json files in dinahcms_modules/
 

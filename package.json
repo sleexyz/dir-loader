@@ -1,9 +1,9 @@
 {
   "name": "dinocms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Content Linker for Webpack",
   "bin": {
-    "dinocms": "dinocms.js"
+    "dinocms": "./bin/dinocms.js"
   },
   "directories": {
     "test": "test"
