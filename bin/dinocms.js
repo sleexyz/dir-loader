@@ -39,38 +39,62 @@ async.each(Object.keys(config), function (key, callback) {
         var folderpath = path.normalize(item.path);
         fs.readdir(folderpath, function (err, files) {
             if (err) callback(err);
-            //filter
+
+            //initialize filter
+            var filter = function() {return true};
             if (item.filter) {
-                var filter;
+                var regex;
                 if (Array.isArray(item.filter)){
                     if (item.filter.length === 2) {
-                        filter = new RegExp(item.filter[0], item.filter[1]);
+                        regex = new RegExp(item.filter[0], item.filter[1]);
                     }else if (item.filter.length === 1){
-                        filter = new RegExp(item.filter[0], item.filter[1]);
+                        regex = new RegExp(item.filter[0], item.filter[1]);
                     }else {
                         assert(false, "length of filter as an array must be <= 2");
                     }
                 }else {
-                    assert(typeof(item.filter) === "string", "filter is not a string!");
-                    filter = new RegExp(item.filter);
+                    assert(typeof(item.filter) === "string", "filter must be either string or array!");
+                    regex = new RegExp(item.filter);
                 }
-                files = files.filter(function(curr) {
-                    return filter.test(curr);
-                });
+                filter = function(curr) {
+                    return regex.test(curr);
+                };
             }
-            //append full path names
-            files = files.map(function(curr) {
+            files = files.filter(filter);
+            //initialize paths
+            var paths = files.map(function(curr) {
                 return path.join(folderpath, curr);
             });
+            //initialize objects
+            var arr = files.map(function(curr, index) {
+                var lstat = fs.lstatSync( path.join(folderpath, curr) );
+                var obj = {
+                    name: curr,
+                    src: "///" + index + "///",
+                    size: lstat.size,
+                    mtime: lstat.mtime
+                };
+                return obj;
+            });
+
             // Write
             var filepath = path.join(full_output_dir, key+".json");
 
             console.log(filepath);
             console.log("    ----> " + folderpath);
 
+            var output = JSON.stringify(arr, null, 2);
+            //replace with require statements
+            
+            var regexp = /\"\/\/\/(\d+)\/\/\/\"/gm;
+            output = output.replace(regexp, function(match, p1) {
+                return "require('" + paths[parseInt(p1)] + "')";
+            });
+
+            output = "module.exports = " + output;
             fs.writeFile(
                 filepath,
-                JSON.stringify(files, null, 4),
+                output,
                 function(err) {
                     if (err) callback(err);
                     callback();
