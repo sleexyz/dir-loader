@@ -81,3 +81,4 @@ Webpack's not gonna solve all your problems. Seperation of concerns: use dinocms
 - write testssss
 - add help message
 - add `dinocms clean`
+- make recursive file lister

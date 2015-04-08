@@ -68,10 +68,12 @@ async.each(Object.keys(config), function (key, callback) {
             });
             //initialize objects
             var arr = files.map(function(curr, index) {
-                var lstat = fs.lstatSync( path.join(folderpath, curr) );
+                var p = path.join(folderpath, curr);
+                var lstat = fs.lstatSync( p);
                 var obj = {
                     name: curr,
                     src: "///" + index + "///",
+                    path: p,
                     size: lstat.size,
                     mtime: lstat.mtime
                 };
