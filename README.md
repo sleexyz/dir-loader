@@ -1,21 +1,20 @@
-# dinocms, for webpack
-> DIrectories! NO CMS!
+# fscms, for webpack
 
 Generate webpack code that explicity links filesystem content to your app as a static dependencies.
 Abstract content from your code.
 
 ## install
 ```
-npm install -g dinocms
+npm install -g fscms
 ```
 
 ## use
 ```
-touch dinocms.toml
+touch fscms.toml
 ```
 
 ```toml
-# This is an example dinocms.toml
+# This is an example fscms.toml
 
 [ blog ]
 type = "directory"
@@ -33,7 +32,7 @@ filter = ["\\.(jpg|jpeg|gif|png)$", "i"]
 ```javascript
 // output:
 
-// ./dinocms_content/blog.js
+// ./fscms_content/blog.js
 
 module.exports = [
   {
@@ -45,7 +44,7 @@ module.exports = [
 ...
 ];
 
-// ./dinocms_content/images.js
+// ./fscms_content/images.js
 
 module.exports = [
   {
@@ -58,27 +57,9 @@ module.exports = [
 ];
 ```
 
-
-
-
-
-
-
-
-### infrequently asked questions:
-
-#### why use this? webpack has [dynamic requires!](https://github.com/webpack/webpack/tree/master/examples/require.context#examplejs)
-Webpack's dynamic requiring necessitates static compilation of all possibly-required modules. Because Webpack is simply a bundler for static websites, everything must be loaded at compile time. If you don't explicitly know the paths of assets within your directory, you cannot `require` them with just webpack.
-
-Dinocms allows you to `require` directory contents without explicitly knowing the contents -- by generating code that knows the contents. 
-
-
-#### why not just make this some kind of webpack loader/plugin?
-Webpack's not gonna solve all your problems. Seperation of concerns: use dinocms to link your content, and use webpack to bundle it up.
-
 ### todo:
 - add debug mode
 - write testssss
 - add help message
-- add `dinocms clean`
+- add `fscms clean`
 - make recursive file lister

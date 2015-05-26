@@ -1,9 +1,9 @@
 {
-  "name": "dinocms",
+  "name": "fscms",
   "version": "1.0.3",
   "description": "Content Linker for Webpack",
   "bin": {
-    "dinocms": "./bin/dinocms.js"
+    "dinocms": "./bin/fscms.js"
   },
   "directories": {
     "test": "test"
@@ -18,17 +18,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/freshdried/dinocms.git"
+    "url": "https://github.com/freshdried/fscms.git"
   },
   "keywords": [
     "webpack",
-    "dinocms",
+    "fscms",
     "cms"
   ],
   "author": "Sean Lee @freshdried",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/freshdried/dinocms/issues"
+    "url": "https://github.com/freshdried/fscms/issues"
   },
-  "homepage": "https://github.com/freshdried/dinocms"
+  "homepage": "https://github.com/freshdried/fscms"
 }

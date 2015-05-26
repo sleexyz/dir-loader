@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-//parses dinocms.toml in current working directory
-//outputs appropriate js files in dinocms_content/
+//parses fscms.toml in current working directory
+//outputs appropriate js files in fscms_content/
 
 var fs = require("fs");
 var path = require("path");
@@ -9,14 +9,14 @@ var async = require("async");
 var assert = require("assert");
 
 var cwd = process.cwd();
-var output_dir = "dinocms_content";
+var output_dir = "fscms_content";
 var full_output_dir = path.join(cwd, output_dir);
 //read config
 var config;
 try {
-    config = toml.parse(fs.readFileSync(path.join(cwd, "dinocms.toml"), "utf8"));
+    config = toml.parse(fs.readFileSync(path.join(cwd, "fscms.toml"), "utf8"));
 } catch(err) {
-    console.log('Could not read dinocms.toml!');
+    console.log('Could not read fscms.toml!');
     console.log(err);
     process.exit(1);
 }
@@ -29,8 +29,8 @@ try {
     } catch(err) {
         console.err('Could not make ' + output_dir + ' directory!');
         process.exit(1);
-
-}}
+    }
+}
 
 //explore directory
 async.each(Object.keys(config), function (key, callback) {
