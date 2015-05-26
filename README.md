@@ -56,10 +56,3 @@ module.exports = [
 ...
 ];
 ```
-
-### todo:
-- add debug mode
-- write testssss
-- add help message
-- add `fscms clean`
-- make recursive file lister
