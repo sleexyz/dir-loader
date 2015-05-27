@@ -3,16 +3,21 @@
   "version": "1.0.3",
   "description": "Content Linker for Webpack",
   "bin": {
-    "dinocms": "./bin/fscms.js"
+    "dinocms": "./dist/fscms.js"
   },
   "directories": {
     "test": "test"
   },
   "dependencies": {
+    "async": "^0.9.0",
+    "bluebird": "^2.9.26",
     "toml": "^2.2.2",
-    "async": "^0.9.0"
+    "yargs": "^3.9.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
