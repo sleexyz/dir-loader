@@ -64,7 +64,7 @@ var build = function build() {
         delete options.loader;
         return loader(options);
     }).then(function (obj) {
-        console.log(obj);
+        console.log(JSON.stringify(obj, undefined, 2));
     })["catch"](function (e) {
         return e.code === "ENOENT";
     }, function (e) {

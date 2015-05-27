@@ -45,7 +45,7 @@ const build = function() {
         delete options.loader;
         return loader(options);
     }).then(function(obj) {
-        console.log(obj);
+        console.log(JSON.stringify(obj, undefined, 2));
     }).catch((e) => e.code === "ENOENT", function(e) {
         console.log(e.cause.path);
         console.log("    was not found!");

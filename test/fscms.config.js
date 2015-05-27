@@ -6,16 +6,16 @@ module.exports = {
         blog: {
             loader: fscms.dir,
             path: "./blog",
-            filter: /\.md$/
+            test: /\.md$/
         },
-        images: {
-            loader: fscms.dir,
-            path: "./images",
-            filter: /\.(jpg|jpeg|gif|png)$/
-        },
-        poop: {
-            loader: fscms.file
-        }
+        // images: {
+        //     loader: fscms.dir,
+        //     path: "./images",
+        //     test: /\.(jpg|jpeg|gif|png)$/
+        // },
+        // poop: {
+        //     loader: fscms.file
+        // }
 
     }
 }
