@@ -18,7 +18,7 @@ var fs = _bluebird2["default"].promisifyAll(require("fs"));
 
 var dir = require("./dir-loader");
 exports.dir = dir;
-var file = function file(options) {
-    return "TODO: implement file-loader";
+var file = function file(key, options) {
+    return JSON.stringify("TODO: implement file-loader");
 };
 exports.file = file;

@@ -42,18 +42,16 @@ const build = function() {
         const [key, value] = obj;
         const loader = value.loader
         let options = value;
-        delete options.loader;
-        return loader(options);
-    }).then(function(obj) {
-        console.log(JSON.stringify(obj, undefined, 2));
+
+        return Promise.resolve(loader(options))
+            .then((str) => 
+                "exports['" + key + "'] = " + str + ";");
+    }).then(function(array) {
+        console.log(array.join("\n\n\n"));
     }).catch((e) => e.code === "ENOENT", function(e) {
         console.log(e.cause.path);
         console.log("    was not found!");
     });
-    //TODO:
-    // - require.ensure for on-demand loading
-    //  - base on https://github.com/webpack/webpack/tree/master/examples/code-splitting
-    // - think if folder not found should fail gracefully or fail hard
 }
 
 
@@ -69,4 +67,3 @@ const commands = {
 }
 
 commands[argv._[0]]();
-
