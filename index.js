@@ -1,13 +1,13 @@
-var dir = require("./lib/dir-loader");
-var file = require("./lib/file-loader");
+var dirLoader = require("./lib/dir-loader");
+var fileLoader = require("./lib/file-loader");
 var makeExport = require("./lib/make-export");
 var toExport = function(config) {
     return makeExport(config);
 }
 
 toExport.loaders = {
-    dir: dir,
-    file: file
+    dir: dirLoader,
+    file: fileLoader
 };
 
 module.exports = toExport;
