@@ -1,11 +1,13 @@
 # contentpack, for webpack
 
-Use webpack as a content-managment system! Contentpack allows you to dynamically requires assets via a `content.config.js` file.
+Contentpack allows you to dynamically requires assets via a `content.config.js` file.
+
+One might then imagine using webpack as a content managment system.
 
 ## install
 ```
 npm install --save-dev val-loader
-npm install --save content-pack
+npm install --save contentpack
 
 ```
 
