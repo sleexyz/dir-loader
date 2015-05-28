@@ -1,31 +1,20 @@
-# content-loader, for webpack
+# contentpack, for webpack
 
-Use webpack as a cms!
-
-```js
-// main.js
-var content = require("content!./content.config.js")
-
-setTimeout(function() {
-    // requires are loaded lazily, so we get about.src only when we call for it
-    console.log(content.blog.about.src);
-}, 1000);
-```
-
-## how
-```js
-var content = require("content!./content.config.js")
-```
-Evaluates the contents of 'content.js', much like [val-loader](https://github.com/webpack/val-loader). The output is valid, `require`-able javascript. Inside the output code are `require` calls to your content.
-
+Use webpack as a content-managment system! Contentpack allows you to dynamically requires assets via a `content.config.js` file.
 
 ## install
+```
+npm install --save-dev val-loader
+npm install --save content-pack
+
+```
 
 ## use
 
 ```js
 // main.js
-var content = require("content!./content.js")
+
+var cp = require("val!./contentpack.config.js")
 
 setTimeout(function() {
     // stuff is loaded lazily, so we get about.src only when we call for it
@@ -34,14 +23,25 @@ setTimeout(function() {
 ```
 
 ```js
-// content.js
-var cl = require("content-loader")
+// contentpack.config.js
+//
+// You can actually name this file whatever you want...
 
-module.exports = cl({
+var contentpack = require("contentpack");
+var dir = contentpack.loaders.dir
+
+module.exports = contentpack({
     blog: {
-        loader: cl.dir,
+        loader: dir,
         path: "./blog",
         filter: /\.md$/
     },
 })
 ```
+
+## how
+```js
+var content = require("val!./content.config.js")
+```
+
+Webpack loads 'content.config.js' with [val-loader](https://github.com/webpack/val-loader). `val-loader` executes `./content.config.js`, which returns a string containing JS code. Within this output code are the webpack-optimized `require` calls to your content. `val-loader` then requires the output code.

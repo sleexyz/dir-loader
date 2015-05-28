@@ -1,12 +1,9 @@
 {
-  "name": "content-loader",
-  "version": "1.0.3",
-  "description": "Content Loader for Webpack. Use Webpack as a CMS.",
-  "directories": {
-    "test": "test"
-  },
+  "name": "contentpack",
+  "version": "0.0.0",
+  "description": "Content linker for Webpack. Use Webpack as a CMS.",
   "dependencies": {
-    "bluebird": "^2.9.26",
+    "bluebird": "^2.9.26"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -17,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/freshdried/content-loader.git"
+    "url": "https://github.com/freshdried/contentpack.git"
   },
   "keywords": [
     "webpack",
-    "content-loader",
+    "contentpack",
     "cms"
   ],
   "author": "Sean Lee @freshdried",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/freshdried/content-loader/issues"
+    "url": "https://github.com/freshdried/contentpack/issues"
   },
-  "homepage": "https://github.com/freshdried/content-loader"
+  "homepage": "https://github.com/freshdried/contentpack"
 }
