@@ -1,58 +1,47 @@
-# fscms, for webpack
+# content-loader, for webpack
 
-Generate webpack code that explicity links filesystem content to your app as a static dependencies.
-Abstract content from your code.
+Use webpack as a cms!
+
+```js
+// main.js
+var content = require("content!./content.config.js")
+
+setTimeout(function() {
+    // requires are loaded lazily, so we get about.src only when we call for it
+    console.log(content.blog.about.src);
+}, 1000);
+```
+
+## how
+```js
+var content = require("content!./content.config.js")
+```
+Evaluates the contents of 'content.js', much like [val-loader](https://github.com/webpack/val-loader). The output is valid, `require`-able javascript. Inside the output code are `require` calls to your content.
+
 
 ## install
-```
-npm install -g fscms
-```
 
 ## use
+
+```js
+// main.js
+var content = require("content!./content.js")
+
+setTimeout(function() {
+    // stuff is loaded lazily, so we get about.src only when we call for it
+    console.log(content.blog.about.src);
+}, 1000)
 ```
-touch fscms.toml
-```
 
-```toml
-# This is an example fscms.toml
+```js
+// content.js
+var cl = require("content-loader")
 
-[ blog ]
-type = "directory"
-path = "/Users/sean/Google Drive/website/entries/"
-filter = "\\.md$"
-
-# Notice the double-backslash. TOML requires backslashes to be escaped in strings.
-
-[ images ]
-type = "directory"
-path = "/Users/sean/Google Drive/website/images/"
-filter = ["\\.(jpg|jpeg|gif|png)$", "i"]
-
-```
-```javascript
-// output:
-
-// ./fscms_content/blog.js
-
-module.exports = [
-  {
-    "name" : "entry1.md",
-    "src" :  require("/Users/sean/Google Drive/website/entries/entry1.md"),
-    "size": 4096
-    "mtime": '2009-06-29T11:11:40Z'
-  },
-...
-];
-
-// ./fscms_content/images.js
-
-module.exports = [
-  {
-    "name" : "cat.png",
-    "src" :  require("/Users/sean/Google Drive/website/images/cat.png"),
-    "size": 40960
-    "mtime": '2009-06-29T11:11:40Z'
-  },
-...
-];
+module.exports = cl({
+    blog: {
+        loader: cl.dir,
+        path: "./blog",
+        filter: /\.md$/
+    },
+})
 ```

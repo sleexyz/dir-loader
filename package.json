@@ -1,18 +1,12 @@
 {
-  "name": "fscms",
+  "name": "content-loader",
   "version": "1.0.3",
-  "description": "Content Linker for Webpack",
-  "bin": {
-    "dinocms": "./dist/fscms.js"
-  },
+  "description": "Content Loader for Webpack. Use Webpack as a CMS.",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "async": "^0.9.0",
     "bluebird": "^2.9.26",
-    "toml": "^2.2.2",
-    "yargs": "^3.9.1"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -23,17 +17,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/freshdried/fscms.git"
+    "url": "https://github.com/freshdried/content-loader.git"
   },
   "keywords": [
     "webpack",
-    "fscms",
+    "content-loader",
     "cms"
   ],
   "author": "Sean Lee @freshdried",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/freshdried/fscms/issues"
+    "url": "https://github.com/freshdried/content-loader/issues"
   },
-  "homepage": "https://github.com/freshdried/fscms"
+  "homepage": "https://github.com/freshdried/content-loader"
 }
