@@ -46,4 +46,4 @@ module.exports = contentpack({
 var content = require("val!./content.config.js")
 ```
 
-Webpack loads 'content.config.js' with [val-loader](https://github.com/webpack/val-loader). `val-loader` executes `./content.config.js`, which returns a string containing JS code. Within this output code are the webpack-optimized `require` calls to your content. `val-loader` then requires the output code.
+Webpack loads 'content.config.js' with [val-loader](https://github.com/webpack/val-loader). `val-loader` executes `./content.config.js`, which exports a string that webpack treats as javascript code. Within this exports string are the webpack-optimized `require` calls to your content.
