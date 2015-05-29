@@ -1,54 +1,67 @@
 import Path from "path"
-import Promise from "bluebird"
 import ObjectAssign from "object-assign"
 import {requirePlaceholder, injectRequires} from "./loader-utils"
+import fs from "fs"
+import {urlToRequest} from "loader-utils"
 
-const fs = Promise.promisifyAll(require("fs"));
 
+const webpackContext = module.parent.parent.parent.context;
 
-//Promise-to-Array flatreaddir (dirname, [test])
-function flatreaddir(dirname, test, pathTransform) {
-    function _readdir(dirname) {
-        return fs.readdirAsync(dirname).map(function (filename) {
-            var path = Path.join(dirname, filename);
-            return fs.statAsync(path).then(function(stat) {
-                if (stat.isDirectory() ) {
-                    return _readdir(path);
-                } else {
-                    if (test ? test.test(filename) : true) {
-                        return genFile(filename, path, stat, pathTransform);
-                    }
-                    return null
-                }     
-            });
-        }).reduce(function (a, b) {
-            return b !== null ? a.concat(b): a;
-        }, []);
-    }
-    return _readdir(dirname);
-}
+//TODO: convert to array path to Object keys
+//Array flatreaddir (dirname, [test])
+// function flatreaddir(dirname, test, pathTransform) {
+//     function _readdir(dirname) {
+//         return fs.readdirSync(dirname).map(function (filename) {
+//             let path = Path.join(dirname, filename);
+//             let stat = fs.statSync(path);
 
-//Promise-to-Object structuredreaddir(dirname, [test])
+//             return {filename, path, stat};
+
+//         }).map(function(input) {
+//             const {filename, path, stat} = input;
+//             if (stat.isDirectory()) {
+//                 return _readdir(path);
+//             }
+//             if (test ? test.test(filename) : true) {
+//                 return genFile(filename, path, stat, pathTransform);
+//             }
+//             return null
+
+//         }).reduce(function (a, b) {
+//             return b !== null ? a.concat(b): a;
+
+//         }, []);
+//     }
+//     return _readdir(dirname);
+// }
+
+//Object structuredreaddir(dirname, [test])
 function structuredreaddir(dirname, test, pathTransform) {
     function _readdir(dirname) {
-        return fs.readdirAsync(dirname).map(function (filename) {
-            var path = Path.join(dirname, filename);
-            return fs.statAsync(path).then(function(stat) {
-                if (stat.isDirectory() ) {
-                    return _readdir(path).then(function(contents) {
-                        let output = {};
-                        output[filename] = contents
-                        return output;
-                    });
-                } else {
-                    if (test ? test.test(filename) : true) {
-                        return genFile(filename, path, stat, pathTransform);
-                    }
-                    return null;
-                }     
-            });
+        return fs.readdirSync(dirname).map(function (filename) {
+            let path = Path.join(dirname, filename);
+            var stat = fs.statSync(path);
+            return {path, filename, stat}
+
+        }).map(function(obj) {
+            const {path, filename, stat} = obj;
+            if (stat.isDirectory() ) {
+                let contents = _readdir(path);
+
+                let output = {};
+                output[filename] = contents
+                return output;
+
+            } 
+            if (test ? test.test(filename) : true) {
+                return genFile(filename, path, stat, pathTransform);
+
+            }
+            return null;
+
         }).reduce(function (a, b) {
             return ObjectAssign(a, b)
+
         }, {});
     }
     return _readdir(dirname);
@@ -56,8 +69,13 @@ function structuredreaddir(dirname, test, pathTransform) {
 
 function genFile (filename, path, stat, pathTransform) {
     let output = {};
+    let src = requirePlaceholder(
+        pathTransform(
+            urlToRequest(Path.relative(webpackContext, path))
+        )
+    );
     output[filename] = {
-        src: requirePlaceholder(pathTransform(path)),
+        src,
         size: stat.size,
         mtime:  stat.mtime
     }
@@ -65,7 +83,7 @@ function genFile (filename, path, stat, pathTransform) {
 }
 
 //String dir(options)
-export default function dir(options) {
+export default function dirLoader(options) {
     const required = ["path"]
     for (let i = 0; i < required.length; i++) {
         let k = required[i];
@@ -74,10 +92,12 @@ export default function dir(options) {
 
     const dirname = (function() {
         let path = options.path;
+        //TODO: is there anyway to make this less usage-dependant?
         return Path.isAbsolute(path)
             ? path
-            : Path.relative(process.cwd(), path);
+            : Path.join(webpackContext, path)
     })();
+    console.log("PATH: " + JSON.stringify(dirname));
 
     // Optional options
     const test = options.test || null;
@@ -85,6 +105,8 @@ export default function dir(options) {
 
     let _readdir= options.flatten ? flatreaddir : structuredreaddir;
 
-    return _readdir(dirname, test, pathTransform).then((_) => JSON.stringify(_, undefined, 2))
-        .then(injectRequires);
+    let output = _readdir(dirname, test, pathTransform);
+    output = JSON.stringify(output, undefined, 2);
+    output = injectRequires(output);
+    return output;
 }

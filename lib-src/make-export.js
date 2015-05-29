@@ -1,16 +1,14 @@
 import Promise from "bluebird"
 
 export default function(config) {
-    return Object.keys(config.content).map(
-            (_) => [_, config.content[_]]
+    let code = Object.keys(config.content).map(function(key) {
+        const options = config.content[key];
+        const loader = options.loader;
 
-        ).map(function(obj) { // convert
-            const key = obj.key
-            const options = obj.options
-            const loader = options.loader
-            return [key, options.loader(options))];
-
-        }).map((kv) =>
-            "exports['" + kv[0] + "'] = " + kv[1] + ";")
-        ).join("\n\n\n");
+        return [key, loader(options)];
+    }).map((kv) =>
+        "exports['" + kv[0] + "'] = " + kv[1] + ";"
+    ).join("\n\n\n");
+    console.log(code);
+    return code;
 }
