@@ -1,4 +1,5 @@
 # contentpack, for webpack
+[![Build Status](https://travis-ci.org/freshdried/contentpack.svg)](https://travis-ci.org/freshdried/contentpack)
 
 Contentpack allows you to dynamically requires assets via a `content.config.js` file.
 
