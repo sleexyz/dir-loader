@@ -3,7 +3,7 @@
 
 Contentpack allows you to dynamically requires assets via a `content.config.js` file.
 
-One might then imagine using webpack as a content managment system.
+One might then imagine using webpack as a content managment system...
 
 ## install
 ```
@@ -19,16 +19,12 @@ npm install --save contentpack
 
 var cp = require("val!./contentpack.config.js")
 
-setTimeout(function() {
-    // stuff is loaded lazily, so we get about.src only when we call for it
-    console.log(content.blog.about.src);
-}, 1000)
+var div = document.getElementById("about")
+about.innerHTML = content.blog["about.md"].src;
 ```
 
 ```js
 // contentpack.config.js
-//
-// You can actually name this file whatever you want...
 
 var contentpack = require("contentpack");
 var dir = contentpack.loaders.dir
@@ -40,6 +36,12 @@ module.exports = contentpack({
         filter: /\.md$/
     },
 })
+```
+
+```
+$ tree ./blog
+./blog
+└── about.md
 ```
 
 ## how
