@@ -2,16 +2,14 @@
   "name": "contentpack",
   "version": "0.0.0",
   "description": "Content linker for Webpack. Use Webpack as a CMS.",
-  "dependencies": {
-    "bluebird": "^2.9.26"
-  },
   "devDependencies": {
     "babel": "^5.4.7",
     "gulp": "^3.8.11",
-    "gulp-babel": "^5.1.0"
+    "gulp-babel": "^5.1.0",
+    "mocha": "^2.2.5"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel/register"
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel/register"
   },
   "repository": {
     "type": "git",
