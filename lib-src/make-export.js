@@ -1,5 +1,3 @@
-import Promise from "bluebird"
-
 export default function(config) {
     let code = Object.keys(config.content).map(function(key) {
         const options = config.content[key];
