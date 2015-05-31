@@ -17,7 +17,7 @@ npm install --save contentpack
 ```js
 // main.js
 
-var cp = require("val!./contentpack.config.js")
+var content = require("val!./contentpack.config.js")
 
 var div = document.getElementById("about")
 about.innerHTML = content.blog["about.md"].src;
