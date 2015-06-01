@@ -1,7 +1,7 @@
 {
   "name": "contentpack",
-  "version": "0.0.0",
-  "description": "Generates require's for Webpack. Use Webpack as a CMS.",
+  "version": "0.0.1",
+  "description": "Generates require calls to your content. Use Webpack as a CMS!",
   "dependencies": {
     "loader-utils": "^0.2.9",
     "object-assign": "^2.0.0"
