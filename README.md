@@ -5,7 +5,9 @@ contentpack, for webpack
 
 <br>
 
-contentpack provides a *declarative* API to express *dynamic* dependencies for webpack by generating code with static `require`'s to content.
+contentpack provides a *declarative* API to express *dynamic* dependencies for webpack
+
+contentpack generates JS code with static `require` calls to originally dynamically-expressed content.
 
 <br><br><br>
 
