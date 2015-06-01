@@ -5,38 +5,20 @@ import fs from "fs"
 import {urlToRequest} from "loader-utils"
 
 
+//TODO: is there anyway to make this less usage-dependant?
 const webpackContext = module.parent.parent.parent.context;
 
-//TODO: convert to array path to Object keys
-//Array flatreaddir (dirname, [test])
-// function flatreaddir(dirname, test, pathTransform) {
-//     function _readdir(dirname) {
-//         return fs.readdirSync(dirname).map(function (filename) {
-//             let path = Path.join(dirname, filename);
-//             let stat = fs.statSync(path);
 
-//             return {filename, path, stat};
-
-//         }).map(function(input) {
-//             const {filename, path, stat} = input;
-//             if (stat.isDirectory()) {
-//                 return _readdir(path);
-//             }
-//             if (test ? test.test(filename) : true) {
-//                 return genFile(filename, path, stat, pathTransform);
-//             }
-//             return null
-
-//         }).reduce(function (a, b) {
-//             return b !== null ? a.concat(b): a;
-
-//         }, []);
-//     }
-//     return _readdir(dirname);
-// }
-
-//Object structuredreaddir(dirname, [test])
-function structuredreaddir(dirname, test, pathTransform) {
+//Object structuredreaddir(dirname, filter, pathTransform, isAbsolute)
+//
+//dirname is absolute path
+//
+//filter is regex or null
+//
+//pathTransform is a function applied before requirePlaceholder
+//
+//isAbsolute is if dirname was originally absolute
+function structuredreaddir(dirname, filter, pathTransform, isAbsolute) {
     function _readdir(dirname) {
         return fs.readdirSync(dirname).map(function (filename) {
             let path = Path.join(dirname, filename);
@@ -53,9 +35,8 @@ function structuredreaddir(dirname, test, pathTransform) {
                 return output;
 
             } 
-            if (test ? test.test(filename) : true) {
-                return genFile(filename, path, stat, pathTransform);
-
+            if (filter ? filter.test(filename) : true) {
+                return genFile(filename, path, stat, pathTransform, isAbsolute);
             }
             return null;
 
@@ -67,13 +48,15 @@ function structuredreaddir(dirname, test, pathTransform) {
     return _readdir(dirname);
 }
 
-function genFile (filename, path, stat, pathTransform) {
+function genFile (filename, path, stat, pathTransform, isAbsolute) {
     let output = {};
     let src = requirePlaceholder(
         pathTransform(
-            urlToRequest(Path.relative(webpackContext, path))
-        )
-    );
+            isAbsolute
+                ? path
+                : urlToRequest(
+                    Path.relative(webpackContext, path)
+    )));
     output[filename] = {
         src,
         size: stat.size,
@@ -90,22 +73,16 @@ export default function dirLoader(options) {
         if (!options[k]) throw new Error("The option " + k + " is required for dir-loader")
     }
 
-    const dirname = (function() {
-        let path = options.path;
-        //TODO: is there anyway to make this less usage-dependant?
-        return Path.isAbsolute(path)
-            ? path
-            : Path.join(webpackContext, path)
-    })();
-    console.log("PATH: " + JSON.stringify(dirname));
+    let abspath = options.path;
+    let isAbsolute = Path.isAbsolute(abspath);
+    if (!isAbsolute)
+        abspath = Path.join(webpackContext, abspath);
 
     // Optional options
-    const test = options.test || null;
+    const filter = options.filter || null;
     const pathTransform = options.pathTransform || ((_) => _);
 
-    let _readdir= options.flatten ? flatreaddir : structuredreaddir;
-
-    let output = _readdir(dirname, test, pathTransform);
+    let output = structuredreaddir(abspath, filter, pathTransform, isAbsolute);
     output = JSON.stringify(output, undefined, 2);
     output = injectRequires(output);
     return output;
