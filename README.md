@@ -19,7 +19,7 @@ form             | type               | can resolve at compile time
 `require("...")` | Static dependency  | yes
 `require(str)`   | Dynamic dependency | no
 
-#### webpack only
+#### webpack
 webpack's out-of-the-box answer to dynamic dependencies is [`require.context`](http://webpack.github.io/docs/context.html#context-module-api)
 
 However, this method is quite limited in usage with only three parameters.
