@@ -8,7 +8,7 @@ contentpack provides a *declarative* way to *dynamically* require modules via a 
 
 > ...then **contentpack** is a **module generator** that generates static references to dynamic dependencies.
 
-
+<br><br><br>
 ## motivation
 
 webpack parses JS for `require(...)` strings for dependency analysis:
@@ -26,15 +26,20 @@ However, this method is quite limited in usage with only three parameters.
 #### webpack + contentpack
 
 contentpack comes in as a more powerful and expressive way to specify dynamic dependencies.
-*contentpack is*
-- *modular*: contentpack piggy-backs off of `val-loader`.
-- *programmable*: write `contentpack.config.js` in nodejs.
-- *extensible*: write your own custom loaders in nodejs.
-- *easy*: 
+
+**contentpack** is
+
+**modular**: contentpack piggy-backs off of `val-loader`.
+
+**programmable**: write `contentpack.config.js` in nodejs.
+
+**extensible**: write your own custom loaders in nodejs.
+
+**easy**: 
 ```js
 var content = require('val!./contentpack.config.js')
 ```
-
+<br><br><br>
 ## install
 ```
 npm install --save-dev val-loader
@@ -95,7 +100,7 @@ Object.keys(posts).forEach(function(filename) {
     postsDiv.innerHTML += posts[filename].src;
 });
 ```
-
+<br><br><br>
 ## how
 ```js
 var content = require("val!./content.config.js")
