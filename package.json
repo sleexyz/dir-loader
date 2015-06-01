@@ -6,7 +6,7 @@
     "loader-utils": "^0.2.9",
     "object-assign": "^2.0.0",
     "gulp": "^3.8.11",
-    "gulp-babel": "^5.1.0",
+    "gulp-babel": "^5.1.0"
   },
   "devDependencies": {
     "babel": "^5.4.7",
