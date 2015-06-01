@@ -5,28 +5,28 @@ contentpack, for webpack
 
 <br>
 
-contentpack provides a *declarative* API to *dynamically* express dependencies for webpack.
+contentpack provides a *declarative* API to express *dynamic* dependencies for webpack by generating code with static `require`'s to content.
 
 <br><br><br>
 
-contentpack works with [**val-loader**](https://github.com/webpack/val-loader): a webpack loader that evaluates JS and bundles its generated code. The contentpack API helps you write that code that generates code. That generated code has your original dynamically-expressed dependencies, but now statically linked).
+contentpack works with [**val-loader**](https://github.com/webpack/val-loader): a webpack loader that evaluates JS and bundles its generated code.
 
 <br><br><br>
 ## motivation
 
 webpack parses JS for `require(...)` strings for dependency analysis:
 
-form             | type               | can resolve at compile time
----------------- | ------------------ | ------
-`require("...")` | Static dependency  | yes
-`require(str)`   | Dynamic dependency | no
+form             | type     | can resolve at compile time
+---------------- | -------- | ------
+`require("...")` | Static   | yes
+`require(str)`   | Dynamic  | no
 
-In the end, webpack needs to statically link all depedencies, so the question is how we resolve the dynamic dependencies.
+In the end, webpack needs to statically bundle all depedencies, so the question is how we handle dynamic dependencies.
 
 #### webpack
-webpack's built in answer to dynamic dependency resolution is via [`require.context`](http://webpack.github.io/docs/context.html#context-module-api)
+webpack's built in answer to dynamic dependency resolution is with dynamic requires, via [`require.context`](http://webpack.github.io/docs/context.html#context-module-api)
 
-However, for anything marginally more dependency-wise complex, `require.context` is limited in usage with only three parameters to work with.
+However, for anything marginally more complex, `require.context` becomes difficult to shoehorn into with only three parameters to work with.
 
 #### webpack + contentpack
 
