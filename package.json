@@ -1,15 +1,15 @@
 {
   "name": "contentpack",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generate require calls to your dynamic dependencies. Use Webpack as a CMS!",
   "dependencies": {
     "loader-utils": "^0.2.9",
-    "object-assign": "^2.0.0"
+    "object-assign": "^2.0.0",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
   },
   "devDependencies": {
     "babel": "^5.4.7",
-    "gulp": "^3.8.11",
-    "gulp-babel": "^5.1.0",
     "mocha": "^2.2.5",
     "mock-fs": "^2.7.0"
   },
