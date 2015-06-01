@@ -73,12 +73,11 @@ module.exports = contentpack({
 ```
 
 ```
-$ tree ./
 ./
 ├── contentpack.config.js
 └── main.js
 
-$ tree /home/slee2/website/
+
 /home/slee2/website/
 ├── about.md
 └── blog
