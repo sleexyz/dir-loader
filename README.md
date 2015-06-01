@@ -5,7 +5,7 @@ contentpack, for webpack
 
 <br>
 
-contentpack provides a *declarative* API to express *dynamic* dependencies for webpack
+contentpack provides a *declarative* API to express *dynamic* dependencies for webpack.
 
 contentpack generates JS code with static `require` calls to originally dynamically-expressed content.
 
@@ -35,10 +35,10 @@ However, for anything marginally more complex, `require.context` becomes difficu
 The contentpack answer is with code that generates code: to dynamically express dependencies in code that evaluates to code with static dependencies.
 
 This way, **contentpack** provides a solution to dynamic dependancy resolution that is
-- **encapsulated**: it keeps dependency-resolving meta-code away from code
-- **modular**: it works with webpack idioms, piggy-backing off of [val-loader](https://github.com/webpack/val-loader).
-- **programmable**: you program `contentpack.config.js` in nodejs.
-- **extensible**: you can use write custom loaders in nodejs.
+- **encapsulated**: keeps dependency-resolving meta-code away from code
+- **modular**: works with webpack idioms, piggy-backing off of [val-loader](https://github.com/webpack/val-loader).
+- **programmable**: program `contentpack.config.js` in nodejs.
+- **extensible**: specify your own logic and write custom loaders in nodejs.
 - **easy**: 
 ```js
 var content = require('val!./contentpack.config.js')
