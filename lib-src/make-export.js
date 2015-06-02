@@ -1,4 +1,6 @@
 export default function(config) {
+    if (!config.content) 
+        throw new Error("Contentpack: Configuration object must have 'content' property");
     let code = Object.keys(config.content).map(function(key) {
         const options = config.content[key];
         const loader = options.loader;

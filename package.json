@@ -1,6 +1,6 @@
 {
   "name": "contentpack",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Generate require calls to your dynamic dependencies. Use Webpack as a CMS!",
   "dependencies": {
     "loader-utils": "^0.2.9",
