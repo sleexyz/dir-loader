@@ -2,7 +2,7 @@ sudo: false
 language: node_js
 node_js:
     - "0.12"
-script: npm test
+script: npm run-script travis
 
 before_install:
     - '[ "${TRAVIS_NODE_VERSION}" != "0.10"  ] || npm install -g npm'
