@@ -1,7 +1,7 @@
 contentpack, for webpack
 ========================
 
-[![Build Status](https://travis-ci.org/freshdried/contentpack.svg)](https://travis-ci.org/freshdried/contentpack)
+[![Build Status](https://travis-ci.org/sleep/contentpack.svg)](https://travis-ci.org/freshdried/contentpack)
 
 <br>
 
