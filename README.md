@@ -1,23 +1,22 @@
-contentpack, for webpack
+dir-loader
 ========================
 
 [![Build Status](https://travis-ci.org/sleep/contentpack.svg)](https://travis-ci.org/sleep/contentpack)
 
-contentpack lets you load a directory dynamically in [webpack](webpack.github.io).
+dir-loader lets you load a directory dynamically in [webpack](http://webpack.github.io).
 
-<br><br><br>
+This is an alternative to webpack's [`require.context`](http://webpack.github.io/docs/context.html#require-context).
+
 ## install
 ```
-npm install --save-dev val-loader
-npm install --save contentpack
+npm install --save-dev dir-loader
 ```
 
 ## use
-
 ```js
 // ./entry.js
 
-import blog from "val!./blog.js";
+var blog = require("dir!./blog.config.js");
 
 console.log(Object.keys(blog));
 
@@ -26,28 +25,22 @@ console.log(Object.keys(blog));
 ```
 
 ```js
-// ./blog.js
-
-import contentpack from "contentpack";
-
-export default contentpack({
+// ./blog.config.js
+module.exports = {
   path: "/home/user/website/blog-files/",
   filter: /\.md$/
-});
+}
 ```
 
 ```
 ./
-├── blog.js
+├── blog.config.js
 └── entry.js
 
 
 /home/user/website/
 └── blog-files
-    ├── This_is_ignored.js
+    ├── This_is_ignored_because_of_the_filter.js
     ├── hello.md
     └── world.md
 ```
-
-## alternatives
-webpack's [`require.context`](http://webpack.github.io/docs/context.html#require-context)
