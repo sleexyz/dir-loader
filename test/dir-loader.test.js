@@ -2,7 +2,7 @@ var assert = require("assert");
 var mock = require("mock-fs");
 
 
-module.parent.context = "/";
+module.parent.parent.context = "/";
 var dirLoader = require("../lib/dir-loader");
 
 var _date = new Date();
