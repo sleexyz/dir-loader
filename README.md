@@ -17,9 +17,9 @@ npm install --save contentpack
 ```js
 // ./entry.js
 
-import blog_files from "val!./blog-files.js";
+import blog from "val!./blog.js";
 
-console.log(Object.keys(blog_files));
+console.log(Object.keys(blog));
 
 // ./hello.md
 // ./world.md
@@ -31,7 +31,7 @@ console.log(Object.keys(blog_files));
 import contentpack from "contentpack";
 
 export default contentpack({
-  path: "/home/user/website/blog/",
+  path: "/home/user/website/blog-files/",
   filter: /\.md$/
 });
 ```
@@ -43,7 +43,7 @@ export default contentpack({
 
 
 /home/user/website/
-└── blog
+└── blog-files
     ├── This_is_ignored.js
     ├── hello.md
     └── world.md
