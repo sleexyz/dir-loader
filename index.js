@@ -1,6 +1,5 @@
-var makeExport = require("./lib/make-export");
-var toExport = function(config) {
-    return makeExport(config);
-}
-
-module.exports = toExport;
+var dirLoader = require("lib/dir-loader");
+module.exports = function(options) {
+  var code = "module.exports = " + dirLoader(options) + ";";
+  return code;
+};

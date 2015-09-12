@@ -2,36 +2,35 @@
   "name": "contentpack",
   "version": "0.1.0",
   "description": "Generate require calls to your dynamic dependencies. Use Webpack as a CMS!",
+  "main": "index.js",
   "dependencies": {
     "loader-utils": "^0.2.9",
     "object-assign": "^2.0.0"
   },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-babel": "^5.1.0",
-    "babel": "^5.4.7",
-    "mocha": "^2.2.5",
+    "babel": "^5.8.23",
+    "eslint": "^1.4.1",
+    "mocha": "^2.3.2",
     "mock-fs": "^2.7.0"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --compilers js:babel/register",
-    "build": "./node_modules/gulp/bin/gulp.js",
-    "prepublish": "npm run-script build",
-    "travis": "npm run-script build; npm test"
+    "lint": "eslint lib",
+    "test": "npm run lint && mocha",
+    "travis": "npm test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/freshdried/contentpack.git"
+    "url": "https://github.com/sleep/contentpack.git"
   },
   "keywords": [
     "webpack",
     "contentpack",
     "cms"
   ],
-  "author": "Sean Lee @freshdried",
+  "author": "Sean Lee @sleep",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/freshdried/contentpack/issues"
+    "url": "https://github.com/sleep/contentpack/issues"
   },
-  "homepage": "https://github.com/freshdried/contentpack"
+  "homepage": "https://github.com/sleep/contentpack"
 }
