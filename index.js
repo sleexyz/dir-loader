@@ -1,6 +1,10 @@
-var dirLoader = require("./lib/dir-loader");
+var generateCode = require("./lib/generateCode");
 
-module.exports = function(options) {
-  var code = "module.exports = " + dirLoader(options) + ";";
-  return code;
+module.exports = function(source) {
+  if (this.cacheable) {
+    this.cacheable();
+  }
+  var options = this.exec(source, this.resource);
+  this.addContextDependency(options.path);
+  return generateCode(options, this.context);
 };

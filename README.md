@@ -1,7 +1,7 @@
 dir-loader
 ========================
 
-[![Build Status](https://travis-ci.org/sleep/contentpack.svg)](https://travis-ci.org/sleep/contentpack)
+[![Build Status](https://travis-ci.org/sleep/dir-loader.svg)](https://travis-ci.org/sleep/dir-loader)
 
 dir-loader lets you load a directory dynamically in [webpack](http://webpack.github.io).
 
@@ -26,6 +26,7 @@ console.log(Object.keys(blog));
 
 ```js
 // ./blog.config.js
+
 module.exports = {
   path: "/home/user/website/blog-files/",
   filter: /\.md$/

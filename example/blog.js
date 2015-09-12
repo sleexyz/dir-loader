@@ -1,5 +1,4 @@
-var contentpack = require("../");
-module.exports = contentpack({
+module.exports = {
   path: "./blog",
   filter: /\.md$/
-});
+};

@@ -1,16 +1,16 @@
 var assert = require("assert");
 var mock = require("mock-fs");
+var loadDirectory = require("../lib/loadDirectory");
 
 
-module.parent.parent.context = "/";
-var dirLoader = require("../lib/dir-loader");
+var mockContext = "/";
 
 var _date = new Date();
 
 
 
 
-describe("./lib/dir-loader", function() {
+describe("./lib/loadDirectory", function() {
   beforeEach(function() {
     mock ({
       "/\u2764\u2764": {
@@ -39,7 +39,7 @@ describe("./lib/dir-loader", function() {
     var expected = "{\n  \"❤\": {\n    \"❤.md\": {\n      \"src\": require(\"/❤❤/❤/❤.md\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    },\n    \"❤.png\": {\n      \"src\": require(\"/❤❤/❤/❤.png\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    }\n  },\n  \"❤.md\": {\n    \"src\": require(\"/❤❤/❤.md\"),\n    \"size\": 9,\n    \"mtime\": "+ JSON.stringify(_date) + "\n  }\n}";
 
 
-    assert(dirLoader(options)
+    assert(loadDirectory(options, mockContext)
            ===
            expected);
   });
@@ -49,7 +49,7 @@ describe("./lib/dir-loader", function() {
       path: "./\u2764\u2764/"
     };
     var expected = "{\n  \"❤\": {\n    \"❤.md\": {\n      \"src\": require(\"./❤❤/❤/❤.md\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    },\n    \"❤.png\": {\n      \"src\": require(\"./❤❤/❤/❤.png\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    }\n  },\n  \"❤.md\": {\n    \"src\": require(\"./❤❤/❤.md\"),\n    \"size\": 9,\n    \"mtime\": "+ JSON.stringify(_date) + "\n  }\n}";
-    assert(dirLoader(options)
+    assert(loadDirectory(options, mockContext)
            ===
            expected);
   });
@@ -59,7 +59,7 @@ describe("./lib/dir-loader", function() {
       filter: /\.md$/
     };
     var expected = "{\n  \"❤\": {\n    \"❤.md\": {\n      \"src\": require(\"./❤❤/❤/❤.md\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    }\n  },\n  \"❤.md\": {\n    \"src\": require(\"./❤❤/❤.md\"),\n    \"size\": 9,\n    \"mtime\": "+ JSON.stringify(_date) + "\n  }\n}";
-    assert(dirLoader(options)
+    assert(loadDirectory(options, mockContext)
            ===
            expected);
   });
@@ -69,7 +69,7 @@ describe("./lib/dir-loader", function() {
       pathTransform: function(_) { return "bundle!" + _;}
     };
     var expected = "{\n  \"❤\": {\n    \"❤.md\": {\n      \"src\": require(\"bundle!./❤❤/❤/❤.md\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    },\n    \"❤.png\": {\n      \"src\": require(\"bundle!./❤❤/❤/❤.png\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    }\n  },\n  \"❤.md\": {\n    \"src\": require(\"bundle!./❤❤/❤.md\"),\n    \"size\": 9,\n    \"mtime\": "+ JSON.stringify(_date) + "\n  }\n}";
-    assert(dirLoader(options)
+    assert(loadDirectory(options, mockContext)
            ===
            expected);
   });

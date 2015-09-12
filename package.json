@@ -1,7 +1,7 @@
 {
-  "name": "contentpack",
+  "name": "dir-loader",
   "version": "0.1.0",
-  "description": "Generate require calls to your dynamic dependencies. Use Webpack as a CMS!",
+  "description": "Load directories dynamically in Webpack",
   "main": "index.js",
   "dependencies": {
     "loader-utils": "^0.2.9",
@@ -21,17 +21,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sleep/contentpack.git"
+    "url": "https://github.com/sleep/dir-loader.git"
   },
   "keywords": [
     "webpack",
-    "contentpack",
+    "directory",
+    "dir",
+    "require.context",
+    "loader",
+    "dynamic",
     "cms"
   ],
   "author": "Sean Lee @sleep",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sleep/contentpack/issues"
+    "url": "https://github.com/sleep/dir-loader/issues"
   },
-  "homepage": "https://github.com/sleep/contentpack"
+  "homepage": "https://github.com/sleep/dir-loader"
 }
