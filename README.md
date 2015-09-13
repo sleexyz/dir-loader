@@ -5,6 +5,8 @@ dir-loader
 
 dir-loader lets you load a directory dynamically in [webpack](http://webpack.github.io).
 
+Given a directory, dir-loader obviates the need to hard-code `require` statements to its modules and subdirectories.
+
 This is a more flexible alternative to webpack's [`require.context`](http://webpack.github.io/docs/context.html#require-context).
 
 ## install
@@ -13,6 +15,7 @@ npm install --save-dev dir-loader
 ```
 
 ## use
+Suppose you have a webpack project with a dynamic directory structure. You want to `require` your content but still preserve the inherent hierarchical data provided by the filesystem.
 ```
 .
 ├── website
@@ -34,6 +37,7 @@ npm install --save-dev dir-loader
 └── entry.js
 ```
 
+In a js file, specify the configuration for dir-loader:
 ```js
 // ./blog.config.js
 
@@ -43,6 +47,7 @@ module.exports = {
 }
 ```
 
+And then just `require` that configuration with **dir!** in your code!
 ```js
 // ./entry.js
 
@@ -50,6 +55,7 @@ var blog = require("dir!./blog.config.js");
 ...
 ```
 
+This is equivalent to the following code:
 ```js
 // (equivalent to ./entry.js)
 
