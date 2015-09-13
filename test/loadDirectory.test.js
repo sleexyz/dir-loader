@@ -53,12 +53,24 @@ describe("./lib/loadDirectory", function() {
            ===
            expected);
   });
-  it("should filter properly", function() {
+  it("should filter files properly", function() {
     var options = {
       path: "./\u2764\u2764/",
       filter: /\.md$/
     };
     var expected = "{\n  \"❤\": {\n    \"❤.md\": {\n      \"src\": require(\"./❤❤/❤/❤.md\"),\n      \"size\": 9,\n      \"mtime\": " + JSON.stringify(_date) + "\n    }\n  },\n  \"❤.md\": {\n    \"src\": require(\"./❤❤/❤.md\"),\n    \"size\": 9,\n    \"mtime\": "+ JSON.stringify(_date) + "\n  }\n}";
+    assert(loadDirectory(options, mockContext)
+           ===
+           expected);
+  });
+  it("should filter directories properly", function() {
+    var options = {
+      path: "./\u2764\u2764/",
+      filter: /\.md$/,
+      dirFilter: /.{2}/
+    };
+    var expected = "{\n  \"❤.md\": {\n    \"src\": require(\"./❤❤/❤.md\"),\n    \"size\": 9,\n    \"mtime\": " + JSON.stringify(_date) + "\n  }\n}";
+
     assert(loadDirectory(options, mockContext)
            ===
            expected);
