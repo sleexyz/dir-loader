@@ -54,7 +54,7 @@ module.exports = {
 }
 ```
 
-And then just require that configuration with **dir!** in your code!
+And then just require that configuration with **dir!** in your application code!
 ```js
 // ./entry.js
 
@@ -62,7 +62,7 @@ var blog = require("dir!./blog.config.js");
 ...
 ```
 
-This is equivalent to the following code:
+This is equivalent to the following javascript:
 ```js
 // (equivalent to ./entry.js)
 
