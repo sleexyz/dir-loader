@@ -1,4 +1,5 @@
 module.exports = {
   path: "./blog",
-  filter: /\.md$/
+  filter: /\.md$/,
+  dirFilter: /^(?!__).*/g
 };
