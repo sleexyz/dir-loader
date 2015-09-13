@@ -5,7 +5,7 @@ dir-loader
 
 dir-loader lets you dynamically require a directory in [webpack](http://webpack.github.io).
 
-dir-loader obviates the need to hard-code `require`'s for a given directory's modules and subdirectories.
+In other words, dir-loader obviates the need to hard-code `require`'s for a given directory's modules and subdirectories.
 
 
 
