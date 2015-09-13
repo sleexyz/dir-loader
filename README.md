@@ -3,7 +3,7 @@ dir-loader
 
 [![Build Status](https://travis-ci.org/sleep/dir-loader.svg)](https://travis-ci.org/sleep/dir-loader)
 
-dir-loader lets you dynamically `require` a directory in [webpack](http://webpack.github.io).
+dir-loader lets you dynamically require a directory in [webpack](http://webpack.github.io).
 
 dir-loader obviates the need to hard-code `require`'s for a given directory's modules and subdirectories.
 
@@ -15,7 +15,7 @@ npm install --save-dev dir-loader
 ```
 
 ## use
-Suppose you have a webpack project with a semantic directory structure. You want to `require` your content but still preserve the hierarchical information inherent to the filesystem tree.
+Suppose you have a webpack project with a semantic directory structure. You want to require your content but still preserve the hierarchical information inherent to the filesystem.
 ```
 .
 ├── website
@@ -47,7 +47,7 @@ module.exports = {
 }
 ```
 
-And then just `require` that configuration with **dir!** in your code!
+And then just require that configuration with **dir!** in your code!
 ```js
 // ./entry.js
 
