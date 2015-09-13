@@ -7,7 +7,7 @@ dir-loader lets you load a directory dynamically in [webpack](http://webpack.git
 
 Given a directory, dir-loader obviates the need to hard-code `require` statements to its modules and subdirectories.
 
-This is a more flexible alternative to webpack's [`require.context`](http://webpack.github.io/docs/context.html#require-context).
+
 
 ## install
 ```
@@ -131,3 +131,10 @@ module.exports = {
   
 }
 ```
+
+## alternative
+dir-loader was created due to insuffciencies with [`require.context`](http://webpack.github.io/docs/context.html#require-context),
+webpack's built-in solution for dynamic requires.
+
+`require.context` provides a flat array of matched modules. This is the easiest way to dynamically require modules if your modules are non-hierarchical. But in the case you want to use the hierarchical information implicit in the filesystem structure, `require.context` falls short.
+
