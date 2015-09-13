@@ -8,10 +8,9 @@
     "object-assign": "^2.0.0"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
     "eslint": "^1.4.1",
     "mocha": "^2.3.2",
-    "mock-fs": "^2.7.0"
+    "mock-fs": "^3.2.0"
   },
   "scripts": {
     "lint": "eslint lib",
