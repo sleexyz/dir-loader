@@ -8,6 +8,13 @@ dir-loader lets you dynamically require a directory in [webpack](http://webpack.
 In other words, dir-loader obviates the need to hard-code `require`'s for a given directory's modules and subdirectories.
 
 
+## contents
+- [install](#install)
+- [use](#use)
+- [api](#api)
+- [examples](#examples)
+- [alternatives](#alternatives)
+
 
 ## install
 ```
@@ -132,7 +139,18 @@ module.exports = {
 }
 ```
 
-## alternative
+## examples
+Code [here](https://github.com/sleep/dir-loader/tree/master/example).
+
+To run it:
+```shell
+git clone https://github.com/sleep/dir-loader
+cd dir-loader
+npm install
+npm run example
+```
+
+## alternatives
 dir-loader was created due to insuffciencies with [`require.context`](http://webpack.github.io/docs/context.html#require-context),
 webpack's built-in solution for dynamic requires.
 
