@@ -1,6 +1,6 @@
 {
   "name": "dir-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Load directories dynamically in Webpack",
   "main": "index.js",
   "dependencies": {
