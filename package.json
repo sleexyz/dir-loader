@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "loader-utils": "^0.2.9",
-    "object-assign": "^2.0.0"
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "^1.4.1",
