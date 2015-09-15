@@ -6,5 +6,6 @@ module.exports = {
   },
   module: { loaders: [
     { test: /\.md$/, loaders:  ["html", "remarkable"]},
+    { test: /\.jsx$/, loaders:  ["babel"], exclude: /node_modules/},
   ]}
 };
