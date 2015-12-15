@@ -1,9 +1,10 @@
 var assert = require("assert");
 var util = require("../lib/util");
 
-var requirePlaceholder = util.requirePlaceholder;
-var injectRequires = util.injectRequires;
-
+var requirePlaceholder = util.genPlaceholder("require");
+var requireReplacer = util.genReplacer("require", function (str) {
+  return "require(" + str + ")";
+});
 
 var testcases = [
   "./blog",
@@ -24,7 +25,7 @@ describe("./lib/util", function () {
 
     it("should escape " + JSON.stringify(testcase), function() {
       var source = JSON.stringify(requirePlaceholder(testcase));
-      var output = injectRequires(source);
+      var output = requireReplacer(source);
       var identity = JSON.parse(requireToPath(output));
       assert(testcase === identity);
     });
