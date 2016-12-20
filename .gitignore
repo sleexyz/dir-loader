@@ -2,3 +2,4 @@ node_modules/
 *.swp
 bundle.js
 bundle.js.map
+yarn.lock

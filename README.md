@@ -1,7 +1,7 @@
 dir-loader
 ========================
 
-[![Build Status](https://travis-ci.org/sleep/dir-loader.svg)](https://travis-ci.org/sleep/dir-loader)
+[![Build Status](https://travis-ci.org/sleexyz/dir-loader.svg)](https://travis-ci.org/sleexyz/dir-loader)
 
 dir-loader lets you dynamically require a directory in [webpack](http://webpack.github.io).
 
@@ -140,11 +140,11 @@ module.exports = {
 ```
 
 ## examples
-Code [here](https://github.com/sleep/dir-loader/tree/master/example).
+Code [here](https://github.com/sleexyz/dir-loader/tree/master/example).
 
 To run it:
 ```shell
-git clone https://github.com/sleep/dir-loader
+git clone https://github.com/sleexyz/dir-loader
 cd dir-loader
 npm install
 npm run example

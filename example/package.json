@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack -d && http-server ."
   },
-  "author": "Sean Lee @sleep",
+  "author": "Sean Lee @sleexyz",
   "license": "MIT",
   "dependencies": {
     "http-server": "^0.8.0",
